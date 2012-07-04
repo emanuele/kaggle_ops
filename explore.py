@@ -1,4 +1,8 @@
-"""A simple exploration tool for the quantitative variables.
+"""A simple exploration tool for the quantitative variables in order
+to decide which variable to put in the logscale.
+
+Copyright 2012, Emanuele Olivetti.
+BSD license, 3 clauses.
 """
 
 import numpy as np

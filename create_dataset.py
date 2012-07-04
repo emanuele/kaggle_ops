@@ -8,6 +8,9 @@
   categorical variables up to know.
 
 - Redundant columns are removed.
+
+Copyright 2012, Emanuele Olivetti.
+BSD license, 3 clauses.
 """
 
 import numpy as np
@@ -34,7 +37,6 @@ def create_dataset(dataframe_train, dataframe_test):
     for col in dataframe.columns:
         if col.startswith('Cat_'):
             columns.append(col)
-            # print col
             uni = np.unique(dataframe[col])
             if len(uni) > 1:
                 # Quick smart way to binarize categorical variables:
@@ -80,7 +82,7 @@ def create_dataset(dataframe_train, dataframe_test):
         elif col.startswith('Outcome_'):
             outcome_col_number = int(col.split('M')[1]) - 1
             tmp = dataframe[col][:train_size].copy()
-            # mean imputation:
+            # median imputation:
             tmp = tmp.fillna(tmp.median())
             ys[:,outcome_col_number] = tmp.values
         else:

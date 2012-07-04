@@ -1,3 +1,9 @@
+"""Very simple blender of the desired regressors and across months.
+
+Copyright 2012, Emanuele Olivetti.
+BSD license, 3 clauses.
+"""
+
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, GradientBoostingRegressor
 import load_data
@@ -22,6 +28,7 @@ if __name__ == '__main__':
     #         ExtraTreesRegressor(n_estimators=100, n_jobs=-1, max_features='auto'),
     #         GradientBoostingRegressor(learn_rate=0.01, subsample=0.5, max_depth=6, n_estimators=5000)]
 
+    # My best submission used just this one:
     regs = [GradientBoostingRegressor(learn_rate=0.001, subsample=0.5, max_depth=6, n_estimators=20000)]
 
     dataset_blend_train = np.zeros((X.shape[0], 12*len(regs)), dtype=np.double)
@@ -42,12 +49,6 @@ if __name__ == '__main__':
     
     dataset_blend_submission_final = dataset_blend_submission.mean(2)
     print "dataset_blend_submission_final:", dataset_blend_submission_final.shape
-    print "Saving blended datasets."
-    pickle.dump({'dataset_blend_train':dataset_blend_train,
-                 'dataset_blend_submission_final': dataset_blend_submission_final},
-                gzip.open('dataset_blend.pickle.gz','w'),
-                protocol=pickle.HIGHEST_PROTOCOL)
-    
 
     print "Blending."
     for i in range(12):

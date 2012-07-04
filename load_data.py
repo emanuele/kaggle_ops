@@ -1,4 +1,7 @@
 """Simple loader and shuffler of the numpy datasets.
+
+Copyright 2012, Emanuele Olivetti.
+BSD license, 3 clauses.
 """
 
 import pickle
